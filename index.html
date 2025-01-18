@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Key</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            color: #333;
+        }
+        .key-display {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 400px;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Generate Key</h1>
+    <button id="generateButton" onclick="generateKey()">Generate Key</button>
+    
+    <div id="keyDisplay" class="key-display"></div>
+    <div id="error-message"></div>
+
+    <script>
+        // Predefined 50 keys (same keys as in the previous Python code)
+        const keys = [
+            "QWERTY1234567890", "ASDFGH9876543210", "ZXCVBNMLKJHGFSDA", "POIUYTREWQ0987654", 
+            "MNBVCXZ123QWERTY", "FGHJKL0987654321", "YUIOPASDFGHJKLZX", "ZXCVBNMASDFGHJQ1", 
+            "QAZWSXEDCRFVTGB", "RFGT6543POIUYTRE", "PLMNBVCXZQ123456", "THJKL9876POIUYTRE", 
+            "23456QWERTYZXCVBN", "VBNM3456POIUYTRE", "TYUI9876MKLOQW12", "ASD123456FGHJKLZX", 
+            "FG45678ZXCVBNMLK", "JKL1234QWERTYUIO", "LPOIU9876MNZVCXQ", "ZCX1234VBNMLKJHG", 
+            "MLKJ98765432ZXCV", "ASZXQWERTY123FGBN", "WERQTYU987654MNBV", "POIUYTREWQZXCVBNM", 
+            "QAZXSWEDC123FVGJ", "RTYUIOP234567WQAZ", "DFGHJKLQWERTYUIOP", "BVCXZPOIUYTRE5678", 
+            "PLMKOJIHGFQZXVBN", "ZXCVBNM98765432QW", "POIUYTREWQZXVBN12", "QWERFYTGBMNBVCXZ", 
+            "VBNM890234567QWER", "LKIJHGFDSAPO9876X", "GFRE1234POIUYTZX", "ZXCV1234QWERTYPOI", 
+            "LKJHGF1234567POIU", "WERTYUI987654321Q", "LKJHGQAZ34567POIU", "ZXCV9876WERTYPOIU", 
+            "AZQWERTY2345679JH", "PLMKJH987654QWEAS", "LJKPOIU8765432MNZ", "POIYTZXCQWERF56GB", 
+            "QWERT5678POIUYTZX", "LKJHPOIU09876532V", "MLKJQWERTY3456789", "VBNM4567POIUYTREW", 
+            "ASDF1234QWERTYZXV", "WQAZS1234RTYUIXCV", "ZXCV987654QWERTY32", "QAZXSW9876POIUYTRE"
+        ];
+
+        let isKeyGenerated = false; // Track whether a key has been generated
+
+        // Function to generate a random key from the predefined list
+        function generateKey() {
+            if (isKeyGenerated) {
+                document.getElementById('error-message').textContent = "You can only generate 1 key at a time!";
+                return; // Stop further execution if a key has already been generated
+            }
+
+            // Randomly select one key from the predefined keys
+            const randomKey = keys[Math.floor(Math.random() * keys.length)];
+
+            // Display the generated key
+            document.getElementById('keyDisplay').innerHTML = `<div class="key-item">${randomKey}</div>`;
+
+            // Disable further generation of keys until a refresh
+            isKeyGenerated = true;
+
+            // Remove the error message after a successful key generation
+            document.getElementById('error-message').textContent = "";
+        }
+    </script>
+
+</body>
+</html>
